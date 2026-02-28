@@ -3,6 +3,7 @@ export interface Ingredient {
   measure: string
 }
 
+// recipe is used for complete details
 export interface Recipe {
   id: string
   name: string
@@ -15,6 +16,7 @@ export interface Recipe {
   ingredients: Ingredient[]
 }
 
+// recipe summary is used for the cards display
 export interface RecipeSummary {
   id: string
   name: string
