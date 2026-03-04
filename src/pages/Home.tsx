@@ -4,6 +4,7 @@ import Hero from '@/components/ui/Hero';
 import SearchBar from '@/components/customComponents/SearchBar';
 import { useSearchParams } from 'react-router-dom';
 import { useDebounce } from '@/lib/hooks/useDebounce';
+import FilterBar from '@/components/customComponents/FilterBar';
 
 const Home = () => {
 
@@ -28,13 +29,25 @@ const Home = () => {
   }, [debouncedInput])
 
   return (
-    <div className='relative'>
-      <Hero/>
-      <div className='absolute -bottom-8 left-0 right-0 px-6 flex justify-center z-20'>
-        <SearchBar
-          value={inputValue}
-          onChange={setInputValue}
-          onSearch={()=>updateSearch(inputValue)}
+    <div>
+      <div className='relative'>
+        <Hero/>
+        <div className='absolute -bottom-8 left-0 right-0 px-6 flex justify-center z-20'>
+          <SearchBar
+            value={inputValue}
+            onChange={setInputValue}
+            onSearch={()=>updateSearch(inputValue)}
+          />
+        </div>
+      </div>
+      <div className='mt-16'>    
+        <FilterBar 
+          selectedCategory={searchParams.get('category') ?? ''}
+          onCategoryChange={(cat)=> setSearchParams((prev)=>{
+            prev.set('category', cat)
+            prev.set('page','1')
+            return prev
+          })}
         />
       </div>
     </div>

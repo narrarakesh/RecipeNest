@@ -1,6 +1,6 @@
 import type { MealDBCategoriesResponse, MealDBMeal, MealDBResponse } from "../types/api"
 import type { Ingredient, Recipe, RecipeSummary } from "../types/domain"
-import { axiosInsance } from "./api"
+import { axiosInstance } from "./api"
 
 
 function transformMeal(meal: MealDBMeal): Recipe {
@@ -31,7 +31,7 @@ function transformMeal(meal: MealDBMeal): Recipe {
 // search recipies
 export async function searchRecipes(query: string): Promise<RecipeSummary[]> {
 
-  const { data } = await axiosInsance.get<MealDBResponse>('/search.php', {
+  const { data } = await axiosInstance.get<MealDBResponse>('/search.php', {
     params: { s: query },
   })
   return (data.meals ?? []).map(transformMeal)
@@ -39,7 +39,7 @@ export async function searchRecipes(query: string): Promise<RecipeSummary[]> {
 
 // filter recipes by ID
 export async function fetchRecipeById(id:string):Promise<Recipe>{
-    const {data} =await axiosInsance.get<MealDBResponse>('/lookup.php', {
+    const {data} =await axiosInstance.get<MealDBResponse>('/lookup.php', {
     params: { i: id },
   })
   const meal = data.meals?.[0]
@@ -49,14 +49,14 @@ export async function fetchRecipeById(id:string):Promise<Recipe>{
 
 // fetch categories
 export async function fetchCategories() {
-  const { data } = await axiosInsance.get<MealDBCategoriesResponse>('/categories.php')
+  const { data } = await axiosInstance.get<MealDBCategoriesResponse>('/categories.php')
   return data.categories
 }
 
 
 // fetch meals by categories
 export async function fetchByCategory(category: string): Promise<RecipeSummary[]> {
-  const { data } = await axiosInsance.get<MealDBResponse>('/filter.php', {
+  const { data } = await axiosInstance.get<MealDBResponse>('/filter.php', {
     params: { c: category },
   })
   return (data.meals ?? []).map((m) => ({
@@ -71,7 +71,7 @@ export async function fetchByCategory(category: string): Promise<RecipeSummary[]
 // fetch by cusine
 
 export async function fetchByCuisine(cuisine: string): Promise<RecipeSummary[]> {
-  const { data } = await axiosInsance.get<MealDBResponse>('/filter.php', {
+  const { data } = await axiosInstance.get<MealDBResponse>('/filter.php', {
     params: { a: cuisine },
   })
   return (data.meals ?? []).map((m) => ({

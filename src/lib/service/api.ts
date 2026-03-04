@@ -1,12 +1,12 @@
 import axios from 'axios'
 
-export const axiosInsance = axios.create({
-        baseURL: 'www.themealdb.com/api/json/v1/1',
+export const axiosInstance = axios.create({
+        baseURL: 'https://www.themealdb.com/api/json/v1/1',
         timeout: 10000,
     }
 );
 
-axiosInsance.interceptors.response.use(
+axiosInstance.interceptors.response.use(
     (response) => response,
     (error) => {
         if (axios.isAxiosError(error)) {
