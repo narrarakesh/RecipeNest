@@ -6,6 +6,7 @@ import {
   fetchByCuisine,
 } from '../service/mealApi'
 import type { RecipeFilters } from '../types/domain'
+import { fetchAllRecipes } from '../service/mealApi'
 
 export const QUERY_KEYS = {
   recipes: {
@@ -16,23 +17,29 @@ export const QUERY_KEYS = {
   },
 } as const
 
+
 export function useRecipes(filters: RecipeFilters) {
   const { search, category, cuisine } = filters
 
+  const noFilters = !search && !category && !cuisine
+
   return useQuery({
-    queryKey: category
-      ? QUERY_KEYS.recipes.byCategory(category)
-      : cuisine
-        ? QUERY_KEYS.recipes.byCuisine(cuisine)
-        : QUERY_KEYS.recipes.search(search),
+    queryKey: noFilters
+      ? ['recipes', 'all']
+      : category
+        ? QUERY_KEYS.recipes.byCategory(category)
+        : cuisine
+          ? QUERY_KEYS.recipes.byCuisine(cuisine)
+          : QUERY_KEYS.recipes.search(search),
 
     queryFn: () => {
+      if (noFilters) return fetchAllRecipes()
       if (category) return fetchByCategory(category)
       if (cuisine) return fetchByCuisine(cuisine)
       return searchRecipes(search)
     },
 
-    enabled: search.length > 0 || category.length > 0 || cuisine.length > 0,
+    enabled: true,
     staleTime: 5 * 60 * 1000,
     retry: 2,
   })

@@ -82,3 +82,10 @@ export async function fetchByCuisine(cuisine: string): Promise<RecipeSummary[]> 
     area: cuisine,
   }))
 }
+
+export async function fetchAllRecipes(): Promise<RecipeSummary[]> {
+  const { data } = await axiosInstance.get<MealDBResponse>('/search.php', {
+    params: { s: '' },
+  })
+  return (data.meals ?? []).map(transformMeal)
+}
