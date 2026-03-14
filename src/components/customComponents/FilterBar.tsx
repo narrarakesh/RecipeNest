@@ -1,5 +1,6 @@
 import useCategories from '@/lib/hooks/useCategories'
 import { Icon } from '@iconify/react'
+import Loader  from '@/components/customComponents/Skeleton';
 
 interface FilterBarProps {
   selectedCategory: string
@@ -27,7 +28,7 @@ const CATEGORY_ICONS: Record<string, string> = {
 const FilterBar = ({ selectedCategory, onCategoryChange }: FilterBarProps) => {
   const { data, isLoading, isError } = useCategories()
 
-  if (isLoading) return <div className='text-text-secondary'>Loading filters...</div>
+  if (isLoading) return <Loader/>
   if (isError) return <div className='text-text-secondary'>Error fetching filters</div>
 
   return (

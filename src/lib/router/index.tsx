@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom'
 import { lazy, Suspense } from 'react'
 import RootLayout from '../../components/layout/RootLayout'
+import Loader from '@/components/customComponents/Skeleton.tsx'
 
 const Home = lazy(() => import('../../pages/Home.tsx'))
 const RecipeDetail = lazy(() => import('../../pages/RecipeDetail.tsx'))
@@ -15,7 +16,7 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: (
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense fallback={<Loader />}>
             <Home />
           </Suspense>
         ),
@@ -23,7 +24,7 @@ export const router = createBrowserRouter([
       {
         path: 'recipe/:id',
         element: (
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense fallback={<Loader />}>
             <RecipeDetail />
           </Suspense>
         ),
@@ -31,7 +32,7 @@ export const router = createBrowserRouter([
       {
         path: 'bookmarks',
         element: (
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense fallback={<Loader />}>
             <Bookmarks />
           </Suspense>
         ),
@@ -39,7 +40,7 @@ export const router = createBrowserRouter([
       {
         path: '*',
         element: (
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense fallback={<Loader />}>
             <NotFound />
           </Suspense>
         ),

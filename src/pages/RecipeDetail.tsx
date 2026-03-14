@@ -5,6 +5,7 @@ import { useBookmarks } from '@/lib/hooks/useBookMarks'
 import { useSimilarRecipes } from './../lib/hooks/useSimilarCategories';
 import RecipeCard from '@/components/customComponents/RecipeCard';
 import { getSteps, getYoutubeEmbedUrl } from '@/lib/utils';
+import Loader  from '@/components/customComponents/Skeleton';
 
 const RecipeDetail = () => {
   const { id } = useParams<{ id: string }>()
@@ -14,7 +15,7 @@ const RecipeDetail = () => {
 
   const {data:similarRecipes} = useSimilarRecipes(recipe?.category || '',recipe?.id || '');
 
-  if (isLoading) return <div>Loading...</div>
+  if (isLoading) return <Loader/>
   if (isError) return <div>Error loading recipe</div>
   if (!recipe) return null
 

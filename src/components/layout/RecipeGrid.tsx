@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom'
 import RecipeCard from '../customComponents/RecipeCard'
 import Pagination from '@/components/customComponents/Pagination'
 import { motion, AnimatePresence } from 'framer-motion'
+import Loader  from '@/components/customComponents/Skeleton';
 
 const PAGE_SIZE = 12;
 
@@ -33,7 +34,7 @@ const RecipeGrid = () => {
   }
 
 
-  if (isLoading) return <div>Loading...</div>
+  if (isLoading) return <Loader/>
 
   if (isError) return (
     <div className='flex flex-col items-center justify-center py-20'>
