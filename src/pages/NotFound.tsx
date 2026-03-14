@@ -1,9 +1,11 @@
+import PageTransition from "@/components/customComponents/PageTransition"
 import { useNavigate } from "react-router-dom"
 
 const NotFound = () => {
   const navigate = useNavigate()
 
   return (
+    <PageTransition>
     <div className="flex flex-col gap-4 justify-center items-center py-32">
       
       <div className="text-8xl opacity-30">🍽️</div>
@@ -28,6 +30,7 @@ const NotFound = () => {
       </button>
 
     </div>
+    </PageTransition>
   )
 }
 

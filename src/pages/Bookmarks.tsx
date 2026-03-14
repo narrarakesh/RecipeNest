@@ -1,3 +1,4 @@
+import PageTransition from "@/components/customComponents/PageTransition";
 import RecipeCard from "@/components/customComponents/RecipeCard";
 import { useBookmarks } from "@/lib/hooks/useBookMarks"
 import { useNavigate } from "react-router-dom";
@@ -8,6 +9,7 @@ const Bookmarks = () => {
   const { bookmarks } = useBookmarks()
 
   return (
+    <PageTransition>
     <div>
       {/* Heading — always visible */}
       <div className='mx-10 mb-10 mt-12'>
@@ -44,6 +46,7 @@ const Bookmarks = () => {
         </div>
       )}
     </div>
+    </PageTransition>
   )
 }
 

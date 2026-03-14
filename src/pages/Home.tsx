@@ -6,6 +6,7 @@ import { useSearchParams } from 'react-router-dom';
 import { useDebounce } from '@/lib/hooks/useDebounce';
 import FilterBar from '@/components/customComponents/FilterBar';
 import RecipeGrid from '@/components/layout/RecipeGrid';
+import PageTransition from '@/components/customComponents/PageTransition';
 
 const Home = () => {
 
@@ -32,6 +33,7 @@ const Home = () => {
   }, [debouncedInput, updateSearch, searchParams])
 
   return (
+    <PageTransition>
     <div className='pb-20'>
       <div className='relative'>
         <Hero/>
@@ -57,6 +59,7 @@ const Home = () => {
         <RecipeGrid/>
       </div>
     </div>
+    </PageTransition>
   )
 }
 
