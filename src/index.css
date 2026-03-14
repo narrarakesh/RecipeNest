@@ -14,12 +14,13 @@
 [data-theme='dark'] {
   --background: #0f0d0a;
   --surface: #1a1612;
-  --surface2: white;
+  /* --surface2: white; */
+  --surface2: #2a2420;
   --border: #33291f;
   --text-primary: #f5ede0;
   --text-secondary: #a89070;
   --accent: #d97706;
-  --accent-light: #423e39;;
+  --accent-light: #423e39;
 }
 
 @theme {
