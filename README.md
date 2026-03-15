@@ -1,73 +1,135 @@
-# React + TypeScript + Vite
+# 🪺 RecipeNest
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A clean, fast, and distraction-free recipe discovery web application built with React and TypeScript.
 
-Currently, two official plugins are available:
+## 🌐 Live Demo
+[https://therecipenest.netlify.app/](https://therecipenest.netlify.app/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 🚀 Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+| Technology | Purpose |
+|---|---|
+| React 19 + TypeScript | UI and type safety |
+| Vite | Build tool and dev server |
+| Tailwind CSS v4 | Styling |
+| Shadcn/ui | UI component primitives |
+| TanStack Query | Server state and caching |
+| Zustand | Client state (bookmarks, theme) |
+| React Router v6 | Navigation and URL state |
+| Framer Motion | Page transitions and animations |
+| Lucide React | Icons |
+| Iconify | Category icons |
+| Axios | HTTP client |
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## ✨ Features
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- 🔍 Debounced search with URL state
+- 🏷️ Filter recipes by category
+- 🌙 Dark / light mode persisted across sessions
+- 🔖 Bookmark recipes persisted in localStorage
+- 📄 Full recipe detail — ingredients, instructions, YouTube video
+- 🍽️ Similar recipes section on detail page
+- 📱 Fully responsive — mobile first
+- ⚡ TanStack Query caching — instant filter switching after first load
+- 🎬 Framer Motion page transitions
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 🏗️ Project Structure
+```
+src/
+├── components/
+│   ├── ui/                  # Shadcn primitives
+│   ├── layout/              # Navbar, RootLayout
+│   └── customComponents/    # RecipeCard, SearchBar, FilterBar, Loader
+├── pages/
+│   ├── Home/
+│   ├── RecipeDetail/
+│   ├── Bookmarks/
+│   └── NotFound/
+└── lib/
+    ├── hooks/               # Custom React hooks
+    ├── services/            # Axios instance and API functions
+    ├── store/               # Zustand global store
+    ├── types/               # TypeScript interfaces
+    ├── utils/               # Pure helper functions
+    └── router/              # Route definitions
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🔌 API
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+**TheMealDB** — free, no API key required
+- Search recipes by name
+- Filter by category
+- Fetch recipe detail by ID
+- Fetch all categories
+
+---
+
+## ⚙️ Local Setup
+
+1. Clone the repository
+```bash
+git clone https://github.com/yourusername/recipenest.git
+cd recipenest
 ```
+
+2. Install dependencies
+```bash
+npm install
+```
+
+3. Start the development server
+```bash
+npm run dev
+```
+
+4. Open your browser
+```
+http://localhost:5173
+```
+
+---
+
+## 🧠 Key Architectural Decisions
+
+**URL as state** — search, category, and pagination live in URL params. Supports shareable links, back button, and page refresh without losing state. Same pattern used by Amazon and Airbnb.
+
+**Server state vs client state** — API data managed by TanStack Query. Bookmarks and theme managed by Zustand persisted to localStorage.
+
+**Anti-corruption layer** — raw API types and domain types are kept separate. Transformer functions in the service layer convert API responses to clean domain objects. Components never see raw API shapes.
+
+**Dumb components** — components receive data via props and render UI. All data fetching and business logic lives in custom hooks. Pages are smart containers, components are pure renderers.
+
+---
+
+## 📦 Scripts
+```bash
+npm run dev        # Start dev server
+npm run build      # Production build
+npm run preview    # Preview production build
+npm run lint       # Run ESLint
+```
+
+---
+
+## 🔮 Future Improvements
+
+- [ ] Nutrition facts via Edamam API
+- [ ] Cuisine filter
+- [ ] User authentication
+- [ ] Cross device bookmark sync
+- [ ] Skeleton loaders
+- [ ] PWA support
+
+---
+
+## 👨‍💻 Author
+
+Built by [Narra Rakesh](https://github.com/narrarakesh)
