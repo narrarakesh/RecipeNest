@@ -47,3 +47,10 @@
   }
 
 }
+
+/* add to index.css */
+/* @layer base {
+  input::placeholder {
+    color: var(--text-secondary);
+  }
+} */

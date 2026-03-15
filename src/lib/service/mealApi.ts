@@ -89,3 +89,10 @@ export async function fetchAllRecipes(): Promise<RecipeSummary[]> {
   })
   return (data.meals ?? []).map(transformMeal)
 }
+
+export async function fetchCuisines(): Promise<{ strArea: string }[]> {
+  const { data } = await axiosInstance.get<{ meals: { strArea: string }[] }>('/list.php', {
+    params: { a: 'list' },
+  })
+  return data.meals
+}

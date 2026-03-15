@@ -28,7 +28,7 @@ const SearchBar = ({ value, onChange, onSearch }: SearchBarProps) => {
         value={value}
         onChange={(e) => onChange(e.target.value)}
         onKeyDown={handleKeyDown}
-        className='pl-12 pr-28 py-7 rounded-full bg-white text-text-primary 
+        className='pl-12 pr-28 py-7 rounded-full bg-surface text-text-primary
                    border-2 border-amber-800/90 shadow-lg text-base focus-visible:ring-2 
                    focus-visible:ring-accent'
       />
